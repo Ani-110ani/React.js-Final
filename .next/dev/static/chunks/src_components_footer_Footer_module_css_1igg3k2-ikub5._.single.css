@@ -1,0 +1,56 @@
+/* [project]/src/components/footer/Footer.module.css [app-client] (css) */
+.Footer-module__q7ZRWa__footer {
+  border-top: 1px solid var(--color-line);
+  background: #f0f2ed;
+}
+
+.Footer-module__q7ZRWa__inner {
+  color: #677169;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  width: min(100% - 48px, 1320px);
+  min-height: 86px;
+  margin: 0 auto;
+  font-size: 11px;
+  display: flex;
+}
+
+.Footer-module__q7ZRWa__links {
+  flex-wrap: wrap;
+  gap: 24px;
+  display: flex;
+}
+
+.Footer-module__q7ZRWa__link {
+  transition: color .15s;
+}
+
+.Footer-module__q7ZRWa__link:hover {
+  color: var(--color-primary);
+}
+
+.Footer-module__q7ZRWa__copyright {
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .Footer-module__q7ZRWa__inner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    width: min(100% - 32px, 1320px);
+    padding: 22px 0;
+  }
+
+  .Footer-module__q7ZRWa__links {
+    gap: 16px;
+  }
+
+  .Footer-module__q7ZRWa__copyright {
+    text-align: left;
+  }
+}
+
+/*# sourceMappingURL=src_components_footer_Footer_module_css_1igg3k2-ikub5._.single.css.map*/

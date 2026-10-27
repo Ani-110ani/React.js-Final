@@ -1,0 +1,80 @@
+/* [project]/src/app/globals.css [app-client] (css) */
+:root {
+  --lightningcss-light: initial;
+  --lightningcss-dark: ;
+  color-scheme: light;
+  --color-background: #f7f7f3;
+  --color-surface: #fff;
+  --color-ink: #202a25;
+  --color-muted: #758078;
+  --color-line: #e8ebe6;
+  --color-primary: #315a48;
+  --color-primary-dark: #254536;
+  --color-accent: #d67b5d;
+  --shadow-card: 0 10px 30px #202a250d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-ink);
+  background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  flex-direction: column;
+  margin: 0;
+  font-family: Avenir Next, Avenir, Segoe UI, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  display: flex;
+}
+
+button, a {
+  color: inherit;
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible, a:focus-visible {
+  outline-offset: 3px;
+  outline: 3px solid #d67b5d8c;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.siteMain {
+  flex: 1;
+  width: min(100% - 48px, 1320px);
+  margin: 0 auto;
+  padding: 48px 0 72px;
+}
+
+@media (max-width: 640px) {
+  .siteMain {
+    width: min(100% - 32px, 1320px);
+    padding: 32px 0 48px;
+  }
+}
+
+/*# sourceMappingURL=src_app_globals_css_1igg3k2-ikub5._.single.css.map*/

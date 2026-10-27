@@ -1,0 +1,127 @@
+/* [project]/src/components/navbar/NavBar.module.css [app-client] (css) */
+.NavBar-module__2DWnya__header {
+  z-index: 1;
+  border-bottom: 1px solid var(--color-line);
+  background: #fffffff0;
+  position: relative;
+}
+
+.NavBar-module__2DWnya__inner {
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  width: min(100% - 48px, 1320px);
+  min-height: 78px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.NavBar-module__2DWnya__brand {
+  color: var(--color-primary);
+  flex: none;
+  align-items: center;
+  gap: 10px;
+  display: inline-flex;
+}
+
+.NavBar-module__2DWnya__brandMark {
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  font-family: Georgia, Times New Roman, serif;
+  font-size: 19px;
+  display: grid;
+}
+
+.NavBar-module__2DWnya__brandName {
+  letter-spacing: -.04em;
+  font-family: Georgia, Times New Roman, serif;
+  font-size: 21px;
+}
+
+.NavBar-module__2DWnya__links {
+  align-items: center;
+  gap: 30px;
+  display: flex;
+}
+
+.NavBar-module__2DWnya__link {
+  color: #58635b;
+  align-items: center;
+  gap: 8px;
+  min-height: 78px;
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 600;
+  transition: color .15s;
+  display: inline-flex;
+  position: relative;
+}
+
+.NavBar-module__2DWnya__link:after {
+  background: var(--color-primary);
+  content: "";
+  transform-origin: center;
+  border-radius: 3px 3px 0 0;
+  height: 3px;
+  transition: transform .15s;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+}
+
+.NavBar-module__2DWnya__link:hover, .NavBar-module__2DWnya__linkActive {
+  color: var(--color-primary);
+}
+
+.NavBar-module__2DWnya__linkActive:after {
+  transform: scaleX(1);
+}
+
+.NavBar-module__2DWnya__icon {
+  stroke-width: 1.7px;
+  width: 17px;
+  height: 17px;
+}
+
+.NavBar-module__2DWnya__settings {
+  cursor: default;
+}
+
+@media (max-width: 640px) {
+  .NavBar-module__2DWnya__inner {
+    gap: 12px;
+    width: min(100% - 32px, 1320px);
+    min-height: 68px;
+  }
+
+  .NavBar-module__2DWnya__links {
+    gap: 17px;
+  }
+
+  .NavBar-module__2DWnya__link {
+    gap: 0;
+    min-height: 68px;
+  }
+
+  .NavBar-module__2DWnya__linkLabel {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .NavBar-module__2DWnya__brandName {
+    font-size: 18px;
+  }
+
+  .NavBar-module__2DWnya__links {
+    gap: 13px;
+  }
+}
+
+/*# sourceMappingURL=src_components_navbar_NavBar_module_css_1igg3k2-ikub5._.single.css.map*/
