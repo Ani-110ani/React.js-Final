@@ -18,7 +18,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$navbar$2f$NavBar$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/navbar/NavBar.jsx [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$footer$2f$Footer$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/footer/Footer.jsx [app-rsc] (ecmascript)");
 (()=>{
-    const e = new Error("Cannot find module '@/lib/StoreProvider'");
+    const e = new Error("Cannot find module '@/StoreProvider'");
     e.code = 'MODULE_NOT_FOUND';
     throw e;
 })();
