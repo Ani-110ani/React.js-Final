@@ -1,6 +1,6 @@
 import NavBar from "@/components/navbar/NavBar";
 import Footer from "@/components/footer/Footer";
-import StoreProvider from "@/app/StoreProvider";
+import StoreProvider from "./StoreProvider";
 import "./globals.css";
 
 export const metadata = {
