@@ -11,9 +11,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <NavBar />
-        <main className="siteMain">{children}</main>
-        <Footer />
+        <StoreProvider>
+          <NavBar />
+          <main className="siteMain">{children}</main>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );
