@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/navigation";
-import "./page.module.css";
+import Link from "next/link";
+import styles from "./page.module.css";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -62,38 +63,41 @@ export default function RegisterPage() {
   };
 
   return (
-    <section>
-      <h1>Register</h1>
-      {status && <p>{status}</p>}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+    <section className={styles.page}>
+      <h1 className={styles.heading}>Register</h1>
+      {status && <p className={styles.status} role="status">{status}</p>}
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.field}>
           <label>First Name</label>
           <input type="text" {...register("firstname")} />
-          {errors.firstname && <p>{errors.firstname.message}</p>}
+          {errors.firstname && <p className={styles.error}>{errors.firstname.message}</p>}
         </div>
-        <div>
+        <div className={styles.field}>
           <label>Last Name</label>
           <input type="text" {...register("lastname")} />
-          {errors.lastname && <p>{errors.lastname.message}</p>}
+          {errors.lastname && <p className={styles.error}>{errors.lastname.message}</p>}
         </div>
-        <div>
+        <div className={styles.field}>
           <label>Email</label>
           <input type="email" {...register("email")} />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p className={styles.error}>{errors.email.message}</p>}
         </div>
-        <div>
+        <div className={styles.field}>
           <label>Username</label>
           <input type="text" {...register("username")} />
-          {errors.username && <p>{errors.username.message}</p>}
+          {errors.username && <p className={styles.error}>{errors.username.message}</p>}
         </div>
-        <div>
+        <div className={styles.field}>
           <label>Password</label>
           <input type="password" {...register("password")} />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && <p className={styles.error}>{errors.password.message}</p>}
         </div>
 
-        <button type="submit">Register</button>
+        <button className={styles.submit} type="submit">Register</button>
       </form>
+      <p className={styles.switch}>
+        Already have an account? <Link href="/login">Log in</Link>
+      </p>
     </section>
   );
 }

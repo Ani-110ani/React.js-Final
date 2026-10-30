@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "@/lib/slices/userSlice";
-import "./page.module.css";
+import styles from "./page.module.css";
 
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -64,31 +65,34 @@ export default function LoginPage() {
   };
 
   return (
-    <section>
-      <h1>Login</h1>
-      {authError && <p style={{ color: "red" }}>{authError}</p>}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+    <section className={styles.page}>
+      <h1 className={styles.heading}>Login</h1>
+      {authError && <p className={styles.status} role="alert">{authError}</p>}
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.field}>
           <label>Username</label>
           <input type="text" {...register("username")} />
-          {errors.username && <p>{errors.username.message}</p>}
+          {errors.username && <p className={styles.error}>{errors.username.message}</p>}
         </div>
 
-        <div>
+        <div className={styles.field}>
           <label>Password</label>
           <input type="password" {...register("password")} />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && <p className={styles.error}>{errors.password.message}</p>}
         </div>
 
-        <div>
+        <div className={styles.remember}>
           <label>
             <input type="checkbox" {...register("rememberMe")} />
             Remember me
           </label>
         </div>
 
-        <button type="submit">Sign In</button>
+        <button className={styles.submit} type="submit">Sign In</button>
       </form>
+      <p className={styles.switch}>
+        New here? <Link href="/register">Create an account</Link>
+      </p>
     </section>
   );
 }
