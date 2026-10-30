@@ -57,7 +57,9 @@ function StoreContent({ children }) {
       localStorage.getItem("token") || sessionStorage.getItem("token");
 
     if (token) {
-      dispatch(loginSuccess(token));
+      const username =
+        localStorage.getItem("username") || sessionStorage.getItem("username");
+      dispatch(loginSuccess({ token, username }));
       if (isAuthPage) router.replace("/");
     } else if (!isAuthPage) {
       router.replace("/login");

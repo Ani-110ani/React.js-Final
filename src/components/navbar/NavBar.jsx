@@ -24,7 +24,9 @@ function NavigationLinks() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("username");
     dispatch(logout());
     window.dispatchEvent(new Event("auth-change"));
     router.replace("/login");

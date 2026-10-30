@@ -1,15 +1,72 @@
-import { Suspense } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styles from "./page.module.css";
 
-async function ProfileContent() {
-  const res = await fetch("https://fakestoreapi.com/users/3", {
-    cache: "no-store",
+export default function ProfilePage() {
+  const username = useSelector((state) => state.user.username);
+  const [result, setResult] = useState({
+    username: null,
+    user: null,
+    error: "",
   });
-  if (!res.ok) {
-    throw new Error(`Failed to load profile: ${res.status}`);
+
+  useEffect(() => {
+    if (!username) return;
+
+    const controller = new AbortController();
+
+    async function loadProfile() {
+      try {
+        const response = await fetch("https://fakestoreapi.com/users", {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+        if (!response.ok) {
+          throw new Error(`Failed to load profile: ${response.status}`);
+        }
+
+        const users = await response.json();
+        if (!Array.isArray(users)) {
+          throw new Error("The profile service returned invalid user data.");
+        }
+        const matchingUser = users.find((item) => item.username === username);
+        if (!matchingUser) {
+          throw new Error("No profile was found for the signed-in user.");
+        }
+
+        setResult({ username, user: matchingUser, error: "" });
+      } catch (loadError) {
+        if (!controller.signal.aborted) {
+          setResult({ username, user: null, error: loadError.message });
+        }
+      }
+    }
+
+    loadProfile();
+    return () => controller.abort();
+  }, [username]);
+
+  if (!username) {
+    return (
+      <p className={styles.loading} role="alert">
+        Your sign-in information is unavailable. Please sign in again.
+      </p>
+    );
   }
 
-  const user = await res.json();
+  const profile = result.username === username ? result : null;
+
+  if (profile?.error) {
+    return <p className={styles.loading} role="alert">{profile.error}</p>;
+  }
+
+  if (!profile?.user) {
+    return <p className={styles.loading} role="status">Loading your profile...</p>;
+  }
+
+  const { user } = profile;
 
   return (
     <section className={styles.page}>
@@ -40,15 +97,5 @@ async function ProfileContent() {
         </div>
       </div>
     </section>
-  );
-}
-
-export default function ProfilePage() {
-  return (
-    <Suspense
-      fallback={<p className={styles.loading}>Loading your profile...</p>}
-    >
-      <ProfileContent />
-    </Suspense>
   );
 }

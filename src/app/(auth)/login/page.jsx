@@ -45,13 +45,17 @@ export default function LoginPage() {
       if (result.token) {
         if (data.rememberMe) {
           localStorage.setItem("token", result.token);
+          localStorage.setItem("username", data.username);
           sessionStorage.removeItem("token");
+          sessionStorage.removeItem("username");
         } else {
           sessionStorage.setItem("token", result.token);
+          sessionStorage.setItem("username", data.username);
           localStorage.removeItem("token");
+          localStorage.removeItem("username");
         }
         window.dispatchEvent(new Event("auth-change"));
-        dispatch(loginSuccess(result.token));
+        dispatch(loginSuccess({ token: result.token, username: data.username }));
         router.replace("/");
       } else {
         setAuthError("Invalid username or password");
