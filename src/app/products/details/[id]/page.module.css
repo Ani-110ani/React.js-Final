@@ -106,6 +106,17 @@
   background: var(--color-primary-dark);
 }
 
+.addedMessage {
+  margin: 14px 0 0;
+  padding: 9px 13px;
+  border: 1px solid #cfe4d6;
+  border-radius: 8px;
+  background: #f0f8f2;
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .notFound {
   padding: 64px 16px;
   color: var(--color-muted);

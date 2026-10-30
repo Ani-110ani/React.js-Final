@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/lib/slices/cartSlice";
@@ -11,6 +11,8 @@ export default function ProductDetails() {
   const dispatch = useDispatch();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showAddedMessage, setShowAddedMessage] = useState(false);
+  const addedMessageTimeout = useRef(null);
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
@@ -21,6 +23,23 @@ export default function ProductDetails() {
       })
       .catch(() => setLoading(false));
   }, [id]);
+
+  useEffect(
+    () => () => {
+      window.clearTimeout(addedMessageTimeout.current);
+    },
+    [],
+  );
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+    setShowAddedMessage(true);
+    window.clearTimeout(addedMessageTimeout.current);
+    addedMessageTimeout.current = window.setTimeout(
+      () => setShowAddedMessage(false),
+      2500,
+    );
+  };
 
   if (loading)
     return <div className={styles.loading}>Loading product details...</div>;
@@ -44,10 +63,15 @@ export default function ProductDetails() {
         </div>
         <button
           className={styles.addButton}
-          onClick={() => dispatch(addToCart(product))}
+          onClick={handleAddToCart}
         >
           Add to Cart
         </button>
+        {showAddedMessage && (
+          <p className={styles.addedMessage} role="status">
+            Added to cart successfully.
+          </p>
+        )}
       </div>
     </article>
   );
