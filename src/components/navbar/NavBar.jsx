@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Home,
   LogOut,
@@ -18,6 +18,7 @@ function NavigationLinks() {
   const pathname = usePathname();
   const router = useRouter();
   const dispatch = useDispatch();
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const homeIsActive =
     pathname === "/" || pathname.startsWith("/products/");
 
@@ -43,10 +44,15 @@ function NavigationLinks() {
       <Link
         href="/cart"
         className={`${styles.link} ${pathname.startsWith("/cart") ? styles.linkActive : ""}`}
-        aria-label="Cart"
+        aria-label={`Cart, ${totalQuantity} ${totalQuantity === 1 ? "item" : "items"}`}
         aria-current={pathname.startsWith("/cart") ? "page" : undefined}
       >
         <ShoppingCart className={styles.icon} />
+        {totalQuantity > 0 && (
+          <span className={styles.cartCount} aria-hidden="true">
+            {totalQuantity > 99 ? "99+" : totalQuantity}
+          </span>
+        )}
         <span className={styles.linkLabel}>Cart</span>
       </Link>
       <Link

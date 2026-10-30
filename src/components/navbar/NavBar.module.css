@@ -92,6 +92,24 @@
   stroke-width: 1.7;
 }
 
+.cartCount {
+  position: absolute;
+  top: 16px;
+  left: 11px;
+  display: grid;
+  min-width: 19px;
+  height: 19px;
+  place-items: center;
+  padding: 0 4px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .settings {
   cursor: default;
 }
