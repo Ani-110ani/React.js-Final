@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Market
 
-## Getting Started
+My Market is a small online storefront built with Next.js. Browse products from
+the Fake Store API, view product details, add items to a shopping cart, and
+manage a signed-in account.
 
-First, run the development server:
+## Features
+
+- Product catalog with prices, ratings, and product detail pages
+- Shopping cart with quantity controls, item removal, and an order summary
+- Login and registration forms with client-side validation
+- Session or persistent sign-in using session storage or local storage
+- Account profile details loaded from the Fake Store API
+- Responsive navigation with cart item count and logout
+
+## Tech stack
+
+- Next.js App Router and React
+- Redux Toolkit and React Redux for client-side user and cart state
+- React Hook Form and Yup for form handling and validation
+- Lucide React icons
+- [Fake Store API](https://fakestoreapi.com/) for product and user data
+
+## Getting started
+
+### Requirements
+
+- Node.js compatible with the installed Next.js version
+- npm
+
+### Install and run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser. The app
+redirects signed-out visitors to the login page; use the registration page to
+create a Fake Store API user, or sign in with an API account.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Available scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the local development server |
+| `npm run build` | Create a production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## App routes
 
-To learn more about Next.js, take a look at the following resources:
+| Route | Description |
+| --- | --- |
+| `/` | Product catalog |
+| `/products/details/[id]` | Product details and add-to-cart action |
+| `/cart` | Shopping cart and order summary |
+| `/profile` | Signed-in user's profile |
+| `/login` | Sign in |
+| `/register` | Create an account |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## State and data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Product and user data, registration, and authentication use the public Fake
+Store API. Redux Toolkit holds the signed-in user and cart state. Sign-in tokens
+and usernames are stored in browser storage: choose “Remember me” to use local
+storage, or leave it unchecked to use session storage. Cart contents are kept
+in in-memory Redux state and are not persisted across page reloads.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app requires an internet connection for API-backed features. Fake Store
+API is a demo service, so registration and account data should not be treated
+as production user storage.
