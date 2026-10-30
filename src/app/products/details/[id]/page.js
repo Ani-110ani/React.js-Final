@@ -1,16 +1,31 @@
-import { Suspense } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/lib/slices/cartSlice";
 import styles from "./page.module.css";
 
-async function ProductContent({ params }) {
-  const { id } = await params;
-  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-  if (!res.ok) return <div className={styles.notFound}>Product not found</div>;
+export default function ProductDetails() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const product = await res.json();
+  useEffect(() => {
+    fetch(`https://fakestoreapi.com/products/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [id]);
 
-  if (!product?.image) {
+  if (loading)
+    return <div className={styles.loading}>Loading product details...</div>;
+  if (!product?.image)
     return <div className={styles.notFound}>Product not found</div>;
-  }
 
   return (
     <article className={styles.page}>
@@ -24,23 +39,16 @@ async function ProductContent({ params }) {
         <div className={styles.purchaseInfo}>
           <span className={styles.price}>${product.price}</span>
           <div className={styles.rating}>
-            ★ {product.rating.rate} ({product.rating.count} reviews)
+            ★ {product.rating?.rate} ({product.rating?.count} reviews)
           </div>
         </div>
-        <button className={styles.addButton}>Add to Cart</button>
+        <button
+          className={styles.addButton}
+          onClick={() => dispatch(addToCart(product))}
+        >
+          Add to Cart
+        </button>
       </div>
     </article>
-  );
-}
-
-export default function ProductDetails({ params }) {
-  return (
-    <Suspense
-      fallback={
-        <div className={styles.loading}>Loading product details...</div>
-      }
-    >
-      <ProductContent params={params} />
-    </Suspense>
   );
 }
