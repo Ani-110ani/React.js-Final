@@ -96,6 +96,11 @@
   cursor: default;
 }
 
+.logout {
+  border: 0;
+  background: transparent;
+}
+
 @media (max-width: 640px) {
   .inner {
     width: min(100% - 32px, 1320px);

@@ -2,19 +2,32 @@
 
 import { Suspense } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 import {
   Home,
+  LogOut,
   Settings,
   ShoppingCart,
   User,
 } from "lucide-react";
+import { logout } from "@/lib/slices/userSlice";
 import styles from "./NavBar.module.css";
 
 function NavigationLinks() {
   const pathname = usePathname();
+  const router = useRouter();
+  const dispatch = useDispatch();
   const homeIsActive =
     pathname === "/" || pathname.startsWith("/products/");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    dispatch(logout());
+    window.dispatchEvent(new Event("auth-change"));
+    router.replace("/login");
+  };
 
   return (
     <div className={styles.links}>
@@ -49,6 +62,15 @@ function NavigationLinks() {
         <Settings className={styles.icon} />
         <span className={styles.linkLabel}>Settings</span>
       </span>
+      <button
+        type="button"
+        className={`${styles.link} ${styles.logout}`}
+        aria-label="Log out"
+        onClick={handleLogout}
+      >
+        <LogOut className={styles.icon} />
+        <span className={styles.linkLabel}>Log out</span>
+      </button>
     </div>
   );
 }
