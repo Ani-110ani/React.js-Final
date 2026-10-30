@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "@/lib/slices/userSlice";
+import "./page.module.css";
 
 const schema = yup.object().shape({
   username: yup.string().required(),

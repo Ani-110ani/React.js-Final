@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/navigation";
+import "./page.module.css";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
