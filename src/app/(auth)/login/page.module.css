@@ -1,4 +1,4 @@
-:global(.siteMain > section:has(> form)) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"])) {
   width: min(100%, 460px);
   margin: 20px auto;
   padding: 38px;
@@ -8,7 +8,7 @@
   box-shadow: var(--shadow-card);
 }
 
-:global(.siteMain > section:has(> form) > h1) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) > h1) {
   margin: 0 0 28px;
   color: var(--color-ink);
   font-family: Georgia, "Times New Roman", serif;
@@ -19,23 +19,23 @@
   text-align: center;
 }
 
-:global(.siteMain > section:has(> form) form) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form) {
   display: grid;
   gap: 20px;
 }
 
-:global(.siteMain > section:has(> form) form > div) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form > div) {
   display: grid;
   gap: 7px;
 }
 
-:global(.siteMain > section:has(> form) form label) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form label) {
   color: var(--color-ink);
   font-size: 13px;
   font-weight: 600;
 }
 
-:global(.siteMain > section:has(> form) form input:not([type="checkbox"])) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form input:not([type="checkbox"])) {
   width: 100%;
   min-height: 46px;
   padding: 10px 13px;
@@ -51,17 +51,17 @@
     background-color 160ms ease;
 }
 
-:global(.siteMain > section:has(> form) form input:not([type="checkbox"]):focus) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form input:not([type="checkbox"]):focus) {
   border-color: var(--color-primary);
   background: var(--color-surface);
   box-shadow: 0 0 0 3px rgb(49 90 72 / 12%);
 }
 
-:global(.siteMain > section:has(> form) form > div:nth-child(3)) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form > div:nth-child(3)) {
   margin-top: -3px;
 }
 
-:global(.siteMain > section:has(> form) form > div:nth-child(3) label) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form > div:nth-child(3) label) {
   display: flex;
   align-items: center;
   gap: 9px;
@@ -71,21 +71,21 @@
   cursor: pointer;
 }
 
-:global(.siteMain > section:has(> form) form input[type="checkbox"]) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form input[type="checkbox"]) {
   width: 16px;
   height: 16px;
   margin: 0;
   accent-color: var(--color-primary);
 }
 
-:global(.siteMain > section:has(> form) form p),
-:global(.siteMain > section:has(> form) > p) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form p),
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) > p) {
   margin: 0;
   color: #b5473b;
   font-size: 12px;
 }
 
-:global(.siteMain > section:has(> form) form button) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form button) {
   min-height: 48px;
   margin-top: 2px;
   border: 0;
@@ -100,18 +100,18 @@
     transform 160ms ease;
 }
 
-:global(.siteMain > section:has(> form) form button:hover) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form button:hover) {
   transform: translateY(-1px);
   background: var(--color-primary-dark);
 }
 
-:global(.siteMain > section:has(> form) form button:focus-visible) {
+:global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"]) form button:focus-visible) {
   outline: 3px solid rgb(214 123 93 / 55%);
   outline-offset: 3px;
 }
 
 @media (max-width: 520px) {
-  :global(.siteMain > section:has(> form)) {
+  :global(.siteMain > section:has(> form > div:nth-child(3) input[type="checkbox"])) {
     margin: 4px auto;
     padding: 26px 21px;
     border-radius: 13px;
