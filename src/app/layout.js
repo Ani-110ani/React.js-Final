@@ -1,6 +1,3 @@
-import { Suspense } from "react";
-import NavBar from "@/components/navbar/NavBar";
-import Footer from "@/components/footer/Footer";
 import StoreProvider from "./StoreProvider";
 import "./globals.css";
 
@@ -13,13 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <NavBar />
-        <main className="siteMain">
-          <Suspense fallback={<p role="status">Loading your store...</p>}>
-            <StoreProvider>{children}</StoreProvider>
-          </Suspense>
-        </main>
-        <Footer />
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );

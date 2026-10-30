@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -29,14 +29,6 @@ export default function LoginPage() {
     resolver: yupResolver(schema),
   });
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      dispatch(loginSuccess(token));
-      router.push("/profile");
-    }
-  }, [dispatch, router]);
-
   const onSubmit = async (data) => {
     try {
       const res = await fetch("https://fakestoreapi.com/auth/login", {
@@ -53,9 +45,14 @@ export default function LoginPage() {
       if (result.token) {
         if (data.rememberMe) {
           localStorage.setItem("token", result.token);
+          sessionStorage.removeItem("token");
+        } else {
+          sessionStorage.setItem("token", result.token);
+          localStorage.removeItem("token");
         }
+        window.dispatchEvent(new Event("auth-change"));
         dispatch(loginSuccess(result.token));
-        router.push("/profile");
+        router.replace("/");
       } else {
         setAuthError("Invalid username or password");
       }

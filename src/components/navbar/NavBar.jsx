@@ -5,11 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Home,
-  LogIn,
   Settings,
   ShoppingCart,
   User,
-  UserPlus,
 } from "lucide-react";
 import styles from "./NavBar.module.css";
 
@@ -46,24 +44,6 @@ function NavigationLinks() {
       >
         <User className={styles.icon} />
         <span className={styles.linkLabel}>Account</span>
-      </Link>
-      <Link
-        href="/login"
-        className={`${styles.link} ${pathname === "/login" ? styles.linkActive : ""}`}
-        aria-label="Log in"
-        aria-current={pathname === "/login" ? "page" : undefined}
-      >
-        <LogIn className={styles.icon} />
-        <span className={styles.linkLabel}>Log in</span>
-      </Link>
-      <Link
-        href="/register"
-        className={`${styles.link} ${pathname === "/register" ? styles.linkActive : ""}`}
-        aria-label="Register"
-        aria-current={pathname === "/register" ? "page" : undefined}
-      >
-        <UserPlus className={styles.icon} />
-        <span className={styles.linkLabel}>Register</span>
       </Link>
       <span className={`${styles.link} ${styles.settings}`} aria-label="Settings">
         <Settings className={styles.icon} />
